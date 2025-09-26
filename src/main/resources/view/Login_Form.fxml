@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="463.0" prefWidth="278.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Login_From_Controller">
+
+   <children>
+      <Pane prefHeight="516.0" prefWidth="417.0">
+         <children>
+            <ImageView blendMode="SRC_ATOP" fitHeight="567.0" fitWidth="773.0" layoutX="-264.0" layoutY="-30.0">
+               <image>
+                  <Image url="@../images/4893798.jpg" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="129.0" layoutY="81.0" prefHeight="62.0" prefWidth="159.0" text="Login" textFill="#555252">
+               <font>
+                  <Font name="Segoe UI Bold" size="42.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtUName" layoutX="65.0" layoutY="170.0" prefHeight="49.0" prefWidth="287.0" promptText="Enter User name or email">
+               <effect>
+                  <DropShadow blurType="TWO_PASS_BOX" offsetX="3.0" offsetY="4.0">
+                     <color>
+                        <Color red="0.7098039388656616" green="0.7098039388656616" blue="0.7098039388656616" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="txtUPass" layoutX="65.0" layoutY="239.0" prefHeight="49.0" prefWidth="287.0" promptText="Enter Password">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="TWO_PASS_BOX" offsetX="3.0" offsetY="4.0">
+                     <color>
+                        <Color red="0.7098039388656616" green="0.7098039388656616" blue="0.7098039388656616" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </PasswordField>
+            <Button fx:id="signInBtn" layoutX="96.0" layoutY="321.0" mnemonicParsing="false" onAction="#signInBtnAction" prefHeight="49.0" prefWidth="226.0" style="-fx-background-color: #008ba0;" text="Sign In" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Bold" size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Hyperlink fx:id="forgotPassLink" alignment="CENTER" layoutX="135.0" layoutY="396.0" onAction="#forgotPassLinkAction" prefHeight="26.0" prefWidth="149.0" text="Forgot your password?" textFill="#2e5ac0">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink fx:id="signUpLink" alignment="CENTER" layoutX="246.0" layoutY="428.0" onAction="#signUpLinkAction" prefHeight="26.0" prefWidth="57.0" text="SignUp " textFill="#5075d2">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Hyperlink>
+            <Label layoutX="108.0" layoutY="432.0" prefHeight="17.0" prefWidth="138.0" text="Don’t have an account? ">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+
+</AnchorPane>
