@@ -61,19 +61,19 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Hyperlink fx:id="forgotPassLink" alignment="CENTER" layoutX="135.0" layoutY="396.0" onAction="#forgotPassLinkAction" prefHeight="26.0" prefWidth="149.0" text="Forgot your password?" textFill="#2e5ac0">
+            <Hyperlink fx:id="forgotPassLink" alignment="CENTER" layoutX="130.0" layoutY="395.0" onAction="#forgotPassLinkAction" prefHeight="27.0" prefWidth="159.0" text="Forgot your password?" textFill="#2e5ac0">
                <font>
-                  <Font size="13.0" />
+                  <Font size="14.0" />
                </font>
             </Hyperlink>
-            <Hyperlink fx:id="signUpLink" alignment="CENTER" layoutX="246.0" layoutY="428.0" onAction="#signUpLinkAction" prefHeight="26.0" prefWidth="57.0" text="SignUp " textFill="#5075d2">
+            <Hyperlink fx:id="signUpLink" alignment="CENTER" layoutX="255.0" layoutY="435.0" onAction="#signUpLinkAction" prefHeight="27.0" prefWidth="60.0" text="SignUp " textFill="#5075d2">
                <font>
-                  <Font size="13.0" />
+                  <Font size="14.0" />
                </font>
             </Hyperlink>
-            <Label layoutX="108.0" layoutY="432.0" prefHeight="17.0" prefWidth="138.0" text="Don’t have an account? ">
+            <Label layoutX="105.0" layoutY="439.0" prefHeight="20.0" prefWidth="150.0" text="Don’t have an account? ">
                <font>
-                  <Font size="13.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
          </children>

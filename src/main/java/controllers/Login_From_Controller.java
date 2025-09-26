@@ -36,7 +36,7 @@ public class Login_From_Controller {
 
     @FXML
     void forgotPassLinkAction(ActionEvent event) {
-
+        JOptionPane.showMessageDialog(null,"Working On Progress..!");
     }
 
     @FXML

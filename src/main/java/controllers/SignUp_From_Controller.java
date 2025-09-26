@@ -204,25 +204,37 @@ public class SignUp_From_Controller {
 
     public void emailCheckAction(KeyEvent keyEvent) {
         try {
+
             if(txtEmail.getText().isEmpty()){
                 emailLabel.setText("Enter your Email Address.");
                 emailLabel.setStyle("-fx-text-fill: black;");
                 emailUniqueState=false;
 
             }else {
+                String email = txtEmail.getText().trim();
+
                 ArrayList<String> emailArray= LoginDetailsController.getEmailCheck();
-                for (String emailCheck : emailArray) {
-                    String email = txtEmail.getText();
-                    email +="@gmail.com";
-                    if ((email).equals(emailCheck)) {
-                        emailLabel.setText("\"" + email + "\" is Already Used.!");
-                        emailLabel.setStyle("-fx-text-fill: red;");
-                        emailUniqueState=false;
-                        return;
-                    } else {
-                        emailLabel.setText("\"" + email + "\" is Available.!");
-                        emailLabel.setStyle("-fx-text-fill: green;");
-                        emailUniqueState=true;
+                if(email.matches("^[a-zA-Z0-9._%+-]+@")){
+                    txtEmail.setText(txtEmail.getText().trim()+"gmail.com");
+                    email+="gmail.com";
+                    signUpBtn.requestFocus();
+
+                }
+                if(!email.matches("^[a-zA-Z0-9._%+-]+@gmail\\.com$")) {
+                        email += "@gmail.com";
+
+                    for (String emailCheck : emailArray) {
+                        if ((email).equals(emailCheck)) {
+                            emailLabel.setText("\"" + email + "\" is Already Used.!");
+                            emailLabel.setStyle("-fx-text-fill: red;");
+                            emailUniqueState = false;
+                            return;
+                        } else {
+                            emailLabel.setText("\"" + email + "\" is Available.!");
+                            emailLabel.setStyle("-fx-text-fill: green;");
+                            emailUniqueState = true;
+
+                        }
                     }
                 }
             }

@@ -115,7 +115,7 @@
                         <Font size="16.0" />
                      </font>
                   </TextField>
-                  <Label fx:id="emailLabel" layoutX="65.0" layoutY="512.0" prefHeight="21.0" prefWidth="218.0" text="Enter your Email Address.">
+                  <Label fx:id="emailLabel" layoutX="65.0" layoutY="512.0" prefHeight="21.0" prefWidth="308.0" text="Enter your Email Address.">
                      <font>
                         <Font size="13.0" />
                      </font>
