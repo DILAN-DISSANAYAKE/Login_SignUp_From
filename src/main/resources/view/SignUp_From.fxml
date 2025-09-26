@@ -44,7 +44,7 @@
                         <Font size="16.0" />
                      </font>
                   </TextField>
-                  <PasswordField fx:id="txtPass" layoutX="65.0" layoutY="745.0" prefHeight="49.0" prefWidth="287.0" promptText="Enter Password">
+                  <PasswordField fx:id="txtPass" layoutX="65.0" layoutY="745.0" onKeyReleased="#passCheckAction" prefHeight="49.0" prefWidth="287.0" promptText="Enter Password">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -98,12 +98,12 @@
                         <Font size="16.0" />
                      </font>
                   </TextField>
-                  <Label layoutX="65.0" layoutY="719.0" prefHeight="21.0" prefWidth="218.0" text="Enter a password for your account.">
+                  <Label fx:id="passLabel" layoutX="65.0" layoutY="719.0" prefHeight="21.0" prefWidth="218.0" text="Enter a password for your account.">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtEmail" layoutX="65.0" layoutY="536.0" prefHeight="49.0" prefWidth="287.0" promptText="example@gmail.com">
+                  <TextField fx:id="txtEmail" layoutX="65.0" layoutY="536.0" onKeyReleased="#emailCheckAction" prefHeight="49.0" prefWidth="287.0" promptText="example@gmail.com">
                      <effect>
                         <DropShadow blurType="TWO_PASS_BOX" offsetX="3.0" offsetY="4.0">
                            <color>
@@ -115,7 +115,7 @@
                         <Font size="16.0" />
                      </font>
                   </TextField>
-                  <Label layoutX="65.0" layoutY="512.0" prefHeight="21.0" prefWidth="218.0" text="Enter your Email Address.">
+                  <Label fx:id="emailLabel" layoutX="65.0" layoutY="512.0" prefHeight="21.0" prefWidth="218.0" text="Enter your Email Address.">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -130,7 +130,7 @@
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtAName" layoutX="65.0" layoutY="621.0" prefHeight="49.0" prefWidth="287.0" promptText="Account Name">
+                  <TextField fx:id="txtAName" layoutX="65.0" layoutY="621.0" onKeyReleased="#accountNameCheckAction" prefHeight="49.0" prefWidth="287.0" promptText="Account Name">
                      <effect>
                         <DropShadow blurType="TWO_PASS_BOX" offsetX="3.0" offsetY="4.0">
                            <color>
@@ -142,12 +142,12 @@
                         <Font size="16.0" />
                      </font>
                   </TextField>
-                  <Label layoutX="65.0" layoutY="597.0" prefHeight="21.0" prefWidth="218.0" text="Enter a name for your account">
+                  <Label fx:id="accountNameLabel" layoutX="65.0" layoutY="597.0" prefHeight="21.0" prefWidth="218.0" text="Enter a name for your account">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtNIC" layoutX="65.0" layoutY="414.0" prefHeight="49.0" prefWidth="287.0" promptText="NIC Number">
+                  <TextField fx:id="txtNIC" layoutX="65.0" layoutY="414.0" onKeyReleased="#nicCheckAction" prefHeight="49.0" prefWidth="287.0" promptText="NIC Number">
                      <effect>
                         <DropShadow blurType="TWO_PASS_BOX" offsetX="3.0" offsetY="4.0">
                            <color>
@@ -159,7 +159,7 @@
                         <Font size="16.0" />
                      </font>
                   </TextField>
-                  <Label layoutX="65.0" layoutY="391.0" prefHeight="21.0" prefWidth="218.0" text="Enter your NIC Number.">
+                  <Label fx:id="nicLabel" layoutX="65.0" layoutY="391.0" prefHeight="21.0" prefWidth="218.0" text="Enter your NIC Number.">
                      <font>
                         <Font size="13.0" />
                      </font>
