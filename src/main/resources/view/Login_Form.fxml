@@ -29,7 +29,7 @@
                   <Font name="Segoe UI Bold" size="42.0" />
                </font>
             </Label>
-            <TextField fx:id="txtUName" layoutX="65.0" layoutY="170.0" prefHeight="49.0" prefWidth="287.0" promptText="Enter User name or email">
+            <TextField fx:id="txtUName" layoutX="65.0" layoutY="170.0" onKeyReleased="#txtUNameAction" prefHeight="49.0" prefWidth="287.0" promptText="Enter User name or email">
                <effect>
                   <DropShadow blurType="TWO_PASS_BOX" offsetX="3.0" offsetY="4.0">
                      <color>

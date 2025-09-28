@@ -10,7 +10,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import org.mindrot.jbcrypt.BCrypt;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -53,7 +55,7 @@ public class Login_From_Controller {
                 for (Customer customer:emailArray) {
                     if (nameORmail.equals(customer.getEmail()) || nameORmail.equals(customer.getAccountName())) {
 
-                        if (pass.equals(customer.getPassword())) {
+                        if (BCrypt.checkpw(pass,customer.getPassword())) {
                             JOptionPane.showMessageDialog(null, "Login Successful!");
                             txtUName.setText("");
                             txtUPass.setText("");
@@ -86,4 +88,13 @@ public class Login_From_Controller {
         stage.show();
     }
 
+    public void txtUNameAction(KeyEvent keyEvent) {
+        String email=txtUName.getText();
+        if (email.matches("^[a-zA-Z0-9._%+-]+@")) {
+            txtUName.setText(email + "gmail.com");
+
+            txtUPass.requestFocus();
+
+        }
+    }
 }

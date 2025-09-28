@@ -19,15 +19,17 @@ import java.util.ArrayList;
 import java.util.Optional;
 import jakarta.mail.*;
 import jakarta.mail.internet.*;
+import org.mindrot.jbcrypt.BCrypt;
+
 import java.util.Properties;
 
 public class SignUp_From_Controller {
     public Label emailLabel;
     public Label accountNameLabel;
-    private boolean passState;
-    private boolean nicState;
-    private boolean accountNameState;
-    private boolean emailUniqueState;
+    private boolean passState=true;
+    private boolean nicState=true;
+    private boolean accountNameState=true;
+    private boolean emailUniqueState=true;
     private boolean emailState=false;
     private String generatedOtp;
     public Label passLabel;
@@ -90,10 +92,12 @@ public class SignUp_From_Controller {
                         sendOtp(emailFormatCheck);
                         if(emailState){
                             Connection connection=null;
+                            String EncryptPass= org.mindrot.jbcrypt.BCrypt.hashpw(pass, org.mindrot.jbcrypt.BCrypt.gensalt(12));
+
                             try {
-                            connection= ConnectionOB.getInstance().getConnection();
+                                connection= ConnectionOB.getInstance().getConnection();
                                 connection.setAutoCommit(false);
-                                Customer customer=new Customer(nic,fName,lName,email,aName,pass);
+                                Customer customer=new Customer(nic,fName,lName,email,aName,EncryptPass);
                                 boolean state=LoginDetailsController.addDetails(customer);
                                 if(state){
                                     JOptionPane.showMessageDialog(null,"You have signed up successfully ✅");
@@ -155,18 +159,21 @@ public class SignUp_From_Controller {
 
            }else {
                ArrayList<String> passArray= LoginDetailsController.getPassCheck();
-               for (String pass : passArray) {
-                   String password = txtPass.getText();
-                   if ((password).equals(pass)) {
-                       passLabel.setText("\"" + password + "\" is Already Used.!");
-                       passLabel.setStyle("-fx-text-fill: red;");
-                       passState=false;
-                       return;
-                   } else {
-                       passLabel.setText("\"" + password + "\" is Available.!");
-                       passLabel.setStyle("-fx-text-fill: green;");
-                       passState=true;
-                   }
+
+                   for (String pass : passArray) {
+                       String password = txtPass.getText();
+                       if (org.mindrot.jbcrypt.BCrypt.checkpw(password, pass)) {
+                           passLabel.setText("\"" + password + "\" is Already Used.!");
+                           passLabel.setStyle("-fx-text-fill: red;");
+                           passState = false;
+                           return;
+                       } else {
+                           passLabel.setText("\"" + password + "\" is Available.!");
+                           passLabel.setStyle("-fx-text-fill: green;");
+                           passState = true;
+                       }
+
+
                }
            }
         } catch (ClassNotFoundException | SQLException ex) {
@@ -183,18 +190,21 @@ public class SignUp_From_Controller {
 
             }else {
                 ArrayList<String> nicArray = LoginDetailsController.getNicCheck();
-                for (String newNic : nicArray) {
-                    String nic = txtNIC.getText();
-                    if ((nic).equals(newNic)) {
-                        nicLabel.setText("\"" + nic + "\" is Already Exists.!");
-                        nicLabel.setStyle("-fx-text-fill: red;");
-                        nicState=false;
-                        return;
-                    } else {
-                        nicLabel.setText("\"" + nic + "\" is Available.!");
-                        nicLabel.setStyle("-fx-text-fill: green;");
-                        nicState=true;
-                    }
+
+                    for (String newNic : nicArray) {
+                        String nic = txtNIC.getText();
+                        if ((nic).equals(newNic)) {
+                            nicLabel.setText("\"" + nic + "\" is Already Exists.!");
+                            nicLabel.setStyle("-fx-text-fill: red;");
+                            nicState = false;
+                            return;
+                        } else {
+                            nicLabel.setText("\"" + nic + "\" is Available.!");
+                            nicLabel.setStyle("-fx-text-fill: green;");
+                            nicState = true;
+                        }
+
+
                 }
             }
         } catch (ClassNotFoundException | SQLException ex) {
@@ -213,29 +223,32 @@ public class SignUp_From_Controller {
             }else {
                 String email = txtEmail.getText().trim();
 
-                ArrayList<String> emailArray= LoginDetailsController.getEmailCheck();
-                if(email.matches("^[a-zA-Z0-9._%+-]+@")){
-                    txtEmail.setText(txtEmail.getText().trim()+"gmail.com");
-                    email+="gmail.com";
+                ArrayList<String> emailArray = LoginDetailsController.getEmailCheck();
+                if (email.matches("^[a-zA-Z0-9._%+-]+@")) {
+                    txtEmail.setText(txtEmail.getText().trim() + "gmail.com");
+                    email += "gmail.com";
                     signUpBtn.requestFocus();
 
                 }
-                if(!email.matches("^[a-zA-Z0-9._%+-]+@gmail\\.com$")) {
+
+                    if (!email.matches("^[a-zA-Z0-9._%+-]+@gmail\\.com$")) {
                         email += "@gmail.com";
 
-                    for (String emailCheck : emailArray) {
-                        if ((email).equals(emailCheck)) {
-                            emailLabel.setText("\"" + email + "\" is Already Used.!");
-                            emailLabel.setStyle("-fx-text-fill: red;");
-                            emailUniqueState = false;
-                            return;
-                        } else {
-                            emailLabel.setText("\"" + email + "\" is Available.!");
-                            emailLabel.setStyle("-fx-text-fill: green;");
-                            emailUniqueState = true;
+                        for (String emailCheck : emailArray) {
+                            if ((email).equals(emailCheck)) {
+                                emailLabel.setText("\"" + email + "\" is Already Used.!");
+                                emailLabel.setStyle("-fx-text-fill: red;");
+                                emailUniqueState = false;
+                                return;
+                            } else {
+                                emailLabel.setText("\"" + email + "\" is Available.!");
+                                emailLabel.setStyle("-fx-text-fill: green;");
+                                emailUniqueState = true;
 
+                            }
                         }
-                    }
+
+
                 }
             }
         } catch (ClassNotFoundException | SQLException ex) {
@@ -252,19 +265,23 @@ public class SignUp_From_Controller {
 
             }else {
                 ArrayList<String> accountNameArray= LoginDetailsController.getAccountNameCheck();
-                for (String accountName : accountNameArray) {
-                    String aName = txtAName.getText();
-                    if (aName.equals(accountName)) {
-                        accountNameLabel.setText("\"" + aName + "\" is Already Used.!");
-                        accountNameLabel.setStyle("-fx-text-fill: red;");
-                        accountNameState=false;
-                        return;
-                    } else {
-                        accountNameLabel.setText("\"" + aName + "\" is Available.!");
-                        accountNameLabel.setStyle("-fx-text-fill: green;");
-                        accountNameState=true;
+
+
+                    for (String accountName : accountNameArray) {
+                        String aName = txtAName.getText();
+                        if (aName.equals(accountName)) {
+                            accountNameLabel.setText("\"" + aName + "\" is Already Used.!");
+                            accountNameLabel.setStyle("-fx-text-fill: red;");
+                            accountNameState = false;
+                            return;
+                        } else {
+                            accountNameLabel.setText("\"" + aName + "\" is Available.!");
+                            accountNameLabel.setStyle("-fx-text-fill: green;");
+                            accountNameState = true;
+                        }
                     }
-                }
+
+
             }
         } catch (ClassNotFoundException | SQLException ex) {
             JOptionPane.showMessageDialog(null,ex.getMessage());
